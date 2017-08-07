@@ -1,0 +1,54 @@
+<div class="add-car-form card-left">
+  <md-card>
+    <md-card-title>List of cars</md-card-title>
+    <md-card-content>
+      <md-nav-list>
+        <md-list-item *ngFor="let car of cars" [class.selected]="car === selectedCar" (click)="onSelect(car)">
+          <span md-line>{{car.id}} {{car.make}} {{car.model}}</span>
+          <button md-icon-button color="primary" (click)="deleteCar(car)"><md-icon>delete</md-icon></button>
+        </md-list-item>
+      </md-nav-list>
+      <div *ngIf="selectedCar">
+        <h2>
+          {{selectedCar.make | uppercase}} {{selectedCar.model | uppercase}} selected!
+        </h2>
+        <button md-raised-button color="primary" (click)="gotoDetail()">View Details <md-icon>edit</md-icon></button>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>
+<div class="add-car-form card-right">
+  <md-card>
+    <md-card-title-group>
+      <md-card-title>Add a new car</md-card-title>
+    </md-card-title-group>
+    <table cellspacing="0" class="full-width">
+      <tr>
+        <td>
+          <md-input-container>
+            <input mdInput placeholder="Make" [(ngModel)]="car.make" />
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container>
+            <input mdInput placeholder="Year" [(ngModel)]="car.year" />
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container>
+            <input mdInput placeholder="Model" [(ngModel)]="car.model" />
+          </md-input-container>
+        </td>
+      </tr>
+      <tr>
+    </table>
+    <md-input-container class="full-width">
+      <textarea mdInput placeholder="Description" [(ngModel)]="car.description"></textarea>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Price" [(ngModel)]="car.price" />
+    </md-input-container>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+    <button color="primary" md-raised-button (click)="addCar()"><md-icon>add</md-icon></button>
+  </md-card>
+</div>

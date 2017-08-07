@@ -1,0 +1,43 @@
+<div *ngIf="car">
+  <div class="add-car-form">
+    <md-card>
+      <md-card-title>Edit Car</md-card-title>
+      <md-card-content>
+        <table class="full-width">
+          <tr>
+            <td>
+              <md-input-container>
+                <input mdInput placeholder="Make" [(ngModel)]="car.make" />
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput placeholder="Year" [(ngModel)]="car.year" />
+              </md-input-container>
+            </td>
+            <td>
+              <md-input-container>
+                <input mdInput placeholder="Model" [(ngModel)]="car.model" />
+              </md-input-container>
+            </td>
+          </tr>
+          <tr>
+        </table>
+        <md-input-container class="full-width">
+          <textarea mdInput placeholder="Description" [(ngModel)]="car.description"></textarea>
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="Price" [(ngModel)]="calcPrice" />
+          <span mdSuffix>{{currency}}</span>
+        </md-input-container>
+        <md-select [(ngModel)]="selectedValue" (change)="changeCurrency(selectedValue)" placeholder="Currency">
+          <md-option *ngFor="let cur of currencies" [value]="cur.value">
+            {{ cur.viewValue }}
+          </md-option>
+        </md-select>
+      </md-card-content>
+      <button md-raised-button color="primary" (click)="goBack()">Back</button>
+      <button md-raised-button color="primary" (click)="save()">Save <md-icon>save</md-icon></button>
+    </md-card>
+  </div>
+</div>
